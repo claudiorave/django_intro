@@ -1,0 +1,23 @@
+{% extends "vacunas/base.html" %}
+{% block content %}
+      <div>
+        <h2>Modificar Vacuna</h2>
+            <form action="{% url 'vacuna-update' vacuna.id %}" method="post">
+                {% csrf_token %}
+
+                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" value="{{ vacuna.nombre }}"><br><br>
+                <label for="fabricante">Fabricante:</label><br>
+                <input type="text" id="fabricante" name="fabricante" value="{{ vacuna.fabricante }}"><br><br>
+                <label for="tipo">Tipo:</label><br>
+                <input type="text" id="tipo" name="tipo" value="{{ vacuna.tipo}}"><br><br>
+                <label for="puntaje">Cantidad de dosis:</label><br>
+                <input type="number" id="cant_dosis" name="cant_dosis" min="1" max="10" value="{{ vacuna.cant_dosis }}"><br><br>
+
+                <input type="submit" value="Modificar">
+             <a href="/"><button>Volver</button></a>
+            </form>
+
+    </div>
+{% endblock %}
